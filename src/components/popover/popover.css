@@ -1,0 +1,45 @@
+.popover {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border: 1px solid rgb(179, 179, 179);
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.popover-title {
+  font-size: 16px;
+  padding: 4px 6px;
+  margin: 0;
+  background-color: rgb(230, 230, 230);
+  border-bottom: 1px solid rgb(179, 179, 179);
+}
+
+.popover-content {
+  font-size: 14px;
+  padding: 4px 6px;
+  margin: 0;
+  background-color: white;
+}
+
+.popover::after,
+.popover::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  border-style: solid;
+}
+
+.popover::after {
+  bottom: -8px;
+  margin-left: -8px;
+  border-width: 8px 8px 0;
+  border-color: white transparent transparent transparent;
+}
+
+.popover::before{
+  bottom: -9px;
+  margin-left: -9px;
+  border-width: 9px 9px 0;
+  border-color: rgb(179, 179, 179) transparent transparent transparent;
+}
