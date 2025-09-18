@@ -6,9 +6,12 @@ describe('Viev popover', () => {
 
   beforeEach(async () => {
     browser = await puppeteer.launch({
-      headless: false,
-      slowMo: 100,
-      devtools: true,
+      headless: process.env.CI === 'true' ? true : false, // для запуска на гите
+      slowMo: process.env.CI === 'true' ? 0 : 100,       
+      devtools: process.env.CI === 'true' ? false : true,
+      args: process.env.CI === 'true'
+        ? ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage']
+        : []
     });
 
     page = await browser.newPage();
