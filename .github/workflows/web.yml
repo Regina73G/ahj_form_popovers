@@ -79,14 +79,25 @@ jobs:
   e2e:
     needs: [build]
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: 22.14.0
           cache: 'npm'
-      - name: install dependencies
+      - name: Install dependencies
         run: npm install
+      - name: Start dev server
+        run: npm start &
+      - name: Wait for server
+        run: |
+          echo "Waiting for localhost:8080..."
+          for i in {1..30}; do
+            if curl -s http://localhost:8080 > /dev/null; then
+              echo "Server is ready!"
+              break
+            fi
+            sleep 1
+          done
       - name: Run E2E tests
         run: npm run e2e
